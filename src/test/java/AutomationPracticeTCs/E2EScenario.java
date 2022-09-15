@@ -13,10 +13,19 @@ public class E2EScenario {
     public String Password;
     int Counter = 0;
     public String OrderNumber;
+    private String chromePath;
+
 
     @BeforeTest
     public void openURL() {
-        String chromePath = System.getProperty("user.dir") + "\\src\\main\\resources\\chromedriver.exe";
+        String OS = System.getProperty("os.name").toLowerCase();
+        if (OS.contains("win")) {
+            chromePath = System.getProperty("user.dir") + "\\src\\main\\resources\\chromedriver.exe";
+        }
+        else{
+            chromePath = System.getProperty("user.dir") + "//src//main//resources//chromedriverMAC";
+        }
+
         System.setProperty("webdriver.chrome.driver", chromePath);
         driver = new ChromeDriver();
         Dimension d = new Dimension(1024, 768);
