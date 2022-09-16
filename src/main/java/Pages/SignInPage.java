@@ -8,23 +8,23 @@ import org.openqa.selenium.support.PageFactory;
 import org.openqa.selenium.JavascriptExecutor;
 
 public class SignInPage {
+
     protected WebDriver driver;
-    By SignUpEmail= By.id("email_create");
-    By CreateAccountbtn=By.id("SubmitCreate");
+    By SignUpEmail = By.id("email_create");
+    By CreateAccountbtn = By.id("SubmitCreate");
+
     public SignInPage(WebDriver driver) {
         PageFactory.initElements(driver, this);
         this.driver = driver;
     }
 
 
-
     public void Set_SignUpEmail(String email) {
         driver.findElement(SignUpEmail).sendKeys(email);
     }
 
-    public void CreateAccountbtn_Click(){
-       // JavascriptExecutor j = (JavascriptExecutor) driver;
-        //j.executeScript("window.scrollBy(0,500)");
+    public void CreateAccountbtn_Click() {
+
         driver.findElement(CreateAccountbtn).click();
     }
 }

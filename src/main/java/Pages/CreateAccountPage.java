@@ -35,19 +35,18 @@ public class CreateAccountPage {
     By Country = By.id("id_country");
     By MobilePhone = By.id("phone_mobile");
     By SubmitBtn = By.id("submitAccount");
-
+    WebDriverWait wait;
     public CreateAccountPage(WebDriver driver) {
         PageFactory.initElements(driver, this);
         this.driver = driver;
+        wait=new WebDriverWait(driver,Duration.ofSeconds(60));
     }
 
-    public void PersonalInfo_IsVisibble() {
-        // wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//h3[contains(text(),'Your personal information')]")));
-    }
 
     public void GenderID_Select() throws InterruptedException {
-        //wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("id_gender2")));
-        Thread.sleep(15000);
+
+        wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//input[@id='id_gender2']")));
+
         driver.findElement(GenderID).click();
     }
 

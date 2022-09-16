@@ -19,10 +19,13 @@ import java.util.concurrent.TimeUnit;
 
 public class AddToCartPage {
     Actions actions;
-
+    WebDriverWait wait;
+    protected WebDriver driver;
     public AddToCartPage(WebDriver driver) {
         PageFactory.initElements(driver, this);
         actions = new Actions(driver);
+        this.driver = driver;
+        wait=new WebDriverWait(driver,Duration.ofSeconds(60));
     }
 
     @FindBy(xpath = "//span[contains(text(), \"Add to cart\")]")
@@ -32,13 +35,17 @@ public class AddToCartPage {
     WebElement CheckOutbtn;
 
     public void Item_Hover() throws InterruptedException {
-        Thread.sleep(5000);
+
+        wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//span[contains(text(), \"Add to cart\")]")));
+
         actions.moveToElement(CategoriesMenu).build().perform();
         CategoriesMenu.click();
     }
 
     public void CheckOut() throws InterruptedException {
-        Thread.sleep(20000);
+
+        wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//span[contains(text(), \"Proceed to checkout\")]")));
+
         CheckOutbtn.click();
     }
 }

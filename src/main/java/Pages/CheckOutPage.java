@@ -15,15 +15,19 @@ import java.util.concurrent.TimeUnit;
 
 public class CheckOutPage {
     protected WebDriver driver;
+    WebDriverWait wait;
     By CheckOutbtn=By.xpath("(//span[contains(text(), \"Proceed to checkout\")])[2]");
 
     public CheckOutPage(WebDriver driver) {
         PageFactory.initElements(driver, this);
         this.driver = driver;
+        wait=new WebDriverWait(driver,Duration.ofSeconds(60));
     }
 
     public void CheckOut() throws InterruptedException {
-        Thread.sleep(20000);
-       driver.findElement(CheckOutbtn).click();
+
+        wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("(//span[contains(text(), \"Proceed to checkout\")])[2]")));
+
+        driver.findElement(CheckOutbtn).click();
     }
 }

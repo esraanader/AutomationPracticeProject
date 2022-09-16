@@ -6,15 +6,21 @@ import org.openqa.selenium.WebElement;
 import org.openqa.selenium.interactions.Actions;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
+import org.openqa.selenium.support.ui.ExpectedConditions;
+import org.openqa.selenium.support.ui.WebDriverWait;
+
+import java.time.Duration;
 
 public class MyAccountPage {
     protected WebDriver driver;
-
+    WebDriverWait wait;
     Actions actions ;
 
     public MyAccountPage(WebDriver driver) {
         PageFactory.initElements(driver, this);
         actions = new Actions(driver);
+        this.driver=driver;
+        wait=new WebDriverWait(driver, Duration.ofSeconds(60));
     }
 
     @FindBy(xpath = "(//a[contains(text(), \"Women\")])[1]")
@@ -25,7 +31,9 @@ public class MyAccountPage {
 
     public void Menu_Hover() throws InterruptedException {
 
-        Thread.sleep(5000);
+
+        wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("(//a[contains(text(), \"Women\")])[1]")));
+
         actions.moveToElement(CategoriesMenu).build().perform();
         actions.moveToElement(subMenu).build().perform();
         subMenu.click();
