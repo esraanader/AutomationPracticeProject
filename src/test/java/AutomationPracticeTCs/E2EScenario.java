@@ -1,32 +1,32 @@
 package AutomationPracticeTCs;
 
 import Pages.*;
+import io.github.bonigarcia.wdm.WebDriverManager;
 import org.openqa.selenium.Dimension;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.testng.annotations.*;
 import java.sql.Timestamp;
 
 public class E2EScenario {
-
     ChromeDriver driver;
-    public String Email;
-    public String Password;
+    protected String Email;
+    protected String Password;
     int Counter = 0;
     public String OrderNumber;
-    private String chromePath;
-
+    public String chromePath;
 
     @BeforeTest
     public void openURL() {
         String OS = System.getProperty("os.name").toLowerCase();
         if (OS.contains("win")) {
             chromePath = System.getProperty("user.dir") + "\\src\\main\\resources\\chromedriver.exe";
+            System.setProperty("webdriver.chrome.driver", chromePath);
         }
         else{
-            chromePath = System.getProperty("user.dir") + "//src//main//resources//chromedriverMAC";
+            chromePath = System.getProperty("user.dir") + "/src/main/resources/chromedriverMAC";
+            System.setProperty("webdriver.chrome.driver", chromePath);
         }
-
-        System.setProperty("webdriver.chrome.driver", chromePath);
+        WebDriverManager.chromedriver().setup();
         driver = new ChromeDriver();
         Dimension d = new Dimension(1024, 768);
         driver.manage().window().setSize(d);
