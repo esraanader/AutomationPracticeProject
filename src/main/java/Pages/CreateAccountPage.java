@@ -18,14 +18,17 @@ import java.util.concurrent.TimeUnit;
 
 public class CreateAccountPage {
     protected WebDriver driver;
+    //public WebElement GenderID;
+    //WebElement GenderID;
     public CreateAccountPage(WebDriver driver) {
-        PageFactory.initElements(driver, this);
+       PageFactory.initElements(driver, this);
+       // driver=driver2;
+        this.driver = driver;
     }
-
     //WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(10));
-
-    @FindBy(id = "id_gender2")
+    //@FindBy(xpath = "//input[@id='id_gender2']")
     WebElement GenderID;
+    //WebElement GenderID= driver.findElement(By.xpath("//input[@id='id_gender2'])"));
 
     @FindBy(id = "customer_firstname")
     WebElement FirstName;
@@ -78,13 +81,16 @@ public class CreateAccountPage {
     @FindBy(id = "submitAccount")
     WebElement SubmitBtn;
 
+
+
     public void PersonalInfo_IsVisibble() {
        // wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//h3[contains(text(),'Your personal information')]")));
     }
 
     public void GenderID_Select() throws InterruptedException {
         //wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("id_gender2")));
-        Thread.sleep(10000);
+        Thread.sleep(15000);
+        GenderID= driver.findElement(By.xpath("//input[@id='id_gender1']"));
         GenderID.click();
     }
 

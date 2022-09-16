@@ -2,6 +2,7 @@ package AutomationPracticeTCs;
 
 import Pages.*;
 import io.github.bonigarcia.wdm.WebDriverManager;
+import org.junit.Assert;
 import org.openqa.selenium.Dimension;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.testng.annotations.*;
@@ -9,7 +10,7 @@ import java.sql.Timestamp;
 
 public class E2EScenario {
 
-    ChromeDriver driver;
+    public ChromeDriver driver;
     public String Email;
     public String Password;
     int Counter = 0;
@@ -122,6 +123,13 @@ public class E2EScenario {
         OrderConfirmationPage confirmPayment = new OrderConfirmationPage(driver);
         OrderNumber = confirmPayment.ReferenceNumber_Get();
         confirmPayment.setBacktoOrdersbtn();
+    }
+
+    @Test(priority = 12)
+    public void OrderHistory() throws InterruptedException{
+        OrderHistoryPage orderhistory = new OrderHistoryPage(driver);
+        orderhistory.ConfirmRefernceNo(OrderNumber);
+
     }
 }
 

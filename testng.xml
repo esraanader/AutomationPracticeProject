@@ -16,6 +16,7 @@
                     <include name="BankPay"/>
                     <include name="OrderSummary"/>
                     <include name="ConfirmPayment"/>
+                    <include name="OrderHistory"/>
                 </methods>
             </class>
         </classes>
