@@ -17,6 +17,8 @@ import java.net.DatagramSocket;
 import java.util.List;
 import java.util.concurrent.TimeUnit;
 
+import static org.testng.Assert.assertTrue;
+
 public class AddToCartPage {
     Actions actions;
     WebDriverWait wait;
@@ -33,6 +35,15 @@ public class AddToCartPage {
 
     @FindBy(xpath = "//span[contains(text(), \"Proceed to checkout\")]")
     WebElement CheckOutbtn;
+
+    Boolean verifyTitle ;
+
+    public Boolean AddToCartPage_IsDisplayed() {
+        verifyTitle = driver.getTitle().equalsIgnoreCase("Blouses - My Store");
+        assertTrue(verifyTitle);
+        System.out.println(verifyTitle);
+        return verifyTitle;
+    }
 
     public void Item_Hover() throws InterruptedException {
 

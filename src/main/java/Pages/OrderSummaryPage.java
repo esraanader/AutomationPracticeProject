@@ -10,6 +10,8 @@ import org.openqa.selenium.support.ui.WebDriverWait;
 
 import java.time.Duration;
 
+import static org.testng.Assert.assertTrue;
+
 public class OrderSummaryPage {
     protected WebDriver driver;
     WebDriverWait wait;
@@ -21,7 +23,13 @@ public class OrderSummaryPage {
         wait=new WebDriverWait(driver, Duration.ofSeconds(60));
 
     }
-
+   Boolean verifyTitle;
+    public Boolean OrderSummaryPage_IsDisplayed() {
+        verifyTitle = driver.getTitle().equalsIgnoreCase("My Store");
+        assertTrue(verifyTitle);
+        System.out.println(verifyTitle);
+        return verifyTitle;
+    }
     public void Confirm() throws InterruptedException {
         wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//span[contains(text(), \"I confirm my order\")]")));
         driver.findElement(Confirmbtn).click();

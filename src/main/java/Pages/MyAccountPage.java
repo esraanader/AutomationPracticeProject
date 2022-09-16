@@ -11,6 +11,8 @@ import org.openqa.selenium.support.ui.WebDriverWait;
 
 import java.time.Duration;
 
+import static org.testng.Assert.assertTrue;
+
 public class MyAccountPage {
     protected WebDriver driver;
     WebDriverWait wait;
@@ -29,6 +31,14 @@ public class MyAccountPage {
     @FindBy(xpath = "(//a[contains(text(), \"Blouses\")])[1]")
     WebElement subMenu;
 
+    Boolean verifyTitle ;
+
+    public Boolean AccountPage_IsDisplayed() {
+        verifyTitle = driver.getTitle().equalsIgnoreCase("My account - My Store");
+        assertTrue(verifyTitle);
+        System.out.println(verifyTitle);
+        return verifyTitle;
+    }
     public void Menu_Hover() throws InterruptedException {
 
 

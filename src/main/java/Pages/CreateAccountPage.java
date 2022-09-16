@@ -16,6 +16,8 @@ import java.net.DatagramSocket;
 import java.util.List;
 import java.util.concurrent.TimeUnit;
 
+import static org.testng.Assert.assertTrue;
+
 public class CreateAccountPage {
     protected WebDriver driver;
     By GenderID = By.xpath("//input[@id='id_gender2']");
@@ -35,14 +37,21 @@ public class CreateAccountPage {
     By Country = By.id("id_country");
     By MobilePhone = By.id("phone_mobile");
     By SubmitBtn = By.id("submitAccount");
+    Boolean verifyTitle ;
     WebDriverWait wait;
+
     public CreateAccountPage(WebDriver driver) {
         PageFactory.initElements(driver, this);
         this.driver = driver;
         wait=new WebDriverWait(driver,Duration.ofSeconds(60));
     }
 
-
+    public Boolean SignIn_IsDisplayed() {
+        verifyTitle = driver.getTitle().equalsIgnoreCase("Login - My Store");
+        assertTrue(verifyTitle);
+        System.out.println(verifyTitle);
+        return verifyTitle;
+    }
     public void GenderID_Select() throws InterruptedException {
 
         wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//input[@id='id_gender2']")));

@@ -11,19 +11,30 @@ import org.openqa.selenium.support.ui.WebDriverWait;
 
 import java.time.Duration;
 
+import static org.testng.Assert.assertTrue;
+
 public class OrderHistoryPage {
     protected WebDriver driver;
     WebDriverWait wait;
-    By OrderReferenceNo= By.xpath("//td[1]");
+    By OrderReferenceNo = By.xpath("//td[1]");
 
     public OrderHistoryPage(WebDriver driver) {
         PageFactory.initElements(driver, this);
         this.driver = driver;
-        wait=new WebDriverWait(driver, Duration.ofSeconds(60));
+        wait = new WebDriverWait(driver, Duration.ofSeconds(60));
     }
 
+    Boolean verifyTitle;
+
+    public Boolean OrderHistory_IsDisplayed() {
+        verifyTitle = driver.getTitle().equalsIgnoreCase("Order history - My Store");
+        assertTrue(verifyTitle);
+        System.out.println(verifyTitle);
+        return verifyTitle;
+    }
 
     Boolean RefNoStatus;
+
     public void ConfirmRefernceNo(String RefNo) throws InterruptedException {
 
         wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//td[1]")));

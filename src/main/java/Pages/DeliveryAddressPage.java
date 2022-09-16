@@ -10,6 +10,8 @@ import org.openqa.selenium.support.ui.WebDriverWait;
 
 import java.time.Duration;
 
+import static org.testng.Assert.assertTrue;
+
 public class DeliveryAddressPage {
     protected WebDriver driver;
     WebDriverWait wait;
@@ -20,6 +22,13 @@ public class DeliveryAddressPage {
     }
     By CheckOutbtn=By.xpath("(//span[contains(text(), \"Proceed to checkout\")])[2]");
 
+    Boolean verifyTitle ;
+    public Boolean DeliveryAddressPage_IsDisplayed() {
+        verifyTitle = driver.getTitle().equalsIgnoreCase("Order - My Store");
+        assertTrue(verifyTitle);
+        System.out.println(verifyTitle);
+        return verifyTitle;
+    }
 
     public void CheckOut() throws InterruptedException {
 

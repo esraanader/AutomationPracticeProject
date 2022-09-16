@@ -10,6 +10,8 @@ import org.openqa.selenium.support.ui.WebDriverWait;
 
 import java.time.Duration;
 
+import static org.testng.Assert.assertTrue;
+
 public class PaymentPage {
 
     protected WebDriver driver;
@@ -22,7 +24,13 @@ public class PaymentPage {
         wait=new WebDriverWait(driver, Duration.ofSeconds(60));
 
     }
-
+    Boolean verifyTitle ;
+    public Boolean PaymentPage_IsDisplayed() {
+        verifyTitle = driver.getTitle().equalsIgnoreCase("Order - My Store");
+        assertTrue(verifyTitle);
+        System.out.println(verifyTitle);
+        return verifyTitle;
+    }
     public void Pay() throws InterruptedException {
 
         wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("(//a[contains(text(), \"Pay by bank wire\")])")));
