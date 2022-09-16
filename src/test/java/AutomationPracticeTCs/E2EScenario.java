@@ -8,12 +8,14 @@ import org.testng.annotations.*;
 import java.sql.Timestamp;
 
 public class E2EScenario {
+
     ChromeDriver driver;
-    protected String Email;
-    protected String Password;
+    public String Email;
+    public String Password;
     int Counter = 0;
     public String OrderNumber;
-    public String chromePath;
+    private String chromePath;
+
 
     @BeforeTest
     public void openURL() {
