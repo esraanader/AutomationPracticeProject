@@ -1,0 +1,12 @@
+[
+  {
+    "firstname" : "TestFirstName",
+    "lastname" : "TestlastName",
+    "password" : "TestPassABC123",
+    "address" : "TestAddressCompund0",
+    "city" : "Cairo",
+    "postcode" : "12345",
+    "mobilephone" : "12345678911"
+
+  }
+]
