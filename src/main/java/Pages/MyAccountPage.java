@@ -9,7 +9,9 @@ import org.openqa.selenium.support.PageFactory;
 
 public class MyAccountPage {
     protected WebDriver driver;
+
     Actions actions ;
+
     public MyAccountPage(WebDriver driver) {
         PageFactory.initElements(driver, this);
         actions = new Actions(driver);

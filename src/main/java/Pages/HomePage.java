@@ -17,14 +17,14 @@ import org.testng.annotations.*;
 
 public class HomePage {
     protected WebDriver driver;
+    By SignInbtn=By.xpath("//a[contains(text(), \"Sign in\")]");
+
     public HomePage(WebDriver driver) {
         PageFactory.initElements(driver, this);
+        this.driver = driver;
     }
 
-    @FindBy(xpath = "//a[contains(text(), \"Sign in\")]")
-    WebElement SignInbtn;
-
     public void SignInbtn_Click() {
-        SignInbtn.click();
+       driver.findElement(SignInbtn).click();
     }
 }

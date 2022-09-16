@@ -18,144 +18,111 @@ import java.util.concurrent.TimeUnit;
 
 public class CreateAccountPage {
     protected WebDriver driver;
-    //public WebElement GenderID;
-    //WebElement GenderID;
+    By GenderID = By.xpath("//input[@id='id_gender2']");
+    By FirstName = By.id("customer_firstname");
+    By LastName = By.id("customer_lastname");
+    By Password = By.id("passwd");
+    By Days = By.id("days");
+    By Months = By.id("months");
+    By Years = By.id("years");
+    By PersonalInfo_Status = By.xpath("//h3[contains(text(),'Your personal information')]");
+    By FirstName_Address = By.id("firstname");
+    By LasttName_Address = By.id("lastname");
+    By Address = By.id("address1");
+    By City = By.id("city");
+    By State = By.id("id_state");
+    By PostCode = By.id("postcode");
+    By Country = By.id("id_country");
+    By MobilePhone = By.id("phone_mobile");
+    By SubmitBtn = By.id("submitAccount");
+
     public CreateAccountPage(WebDriver driver) {
-       PageFactory.initElements(driver, this);
-       // driver=driver2;
+        PageFactory.initElements(driver, this);
         this.driver = driver;
     }
-    //WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(10));
-    //@FindBy(xpath = "//input[@id='id_gender2']")
-    WebElement GenderID;
-    //WebElement GenderID= driver.findElement(By.xpath("//input[@id='id_gender2'])"));
-
-    @FindBy(id = "customer_firstname")
-    WebElement FirstName;
-
-    @FindBy(id = "customer_lastname")
-    WebElement LastName;
-
-    @FindBy(id = "passwd")
-    WebElement Password;
-
-    @FindBy(id = "days")
-    WebElement Days;
-
-    @FindBy(id = "months")
-    WebElement Months;
-
-    @FindBy(id = "years")
-    WebElement Years;
-
-    @FindBy(xpath = "//h3[contains(text(),'Your personal information')]")
-    WebElement PersonalInfo_Status;
-
-    @FindBy(id = "firstname")
-    WebElement FirstName_Address;
-
-    @FindBy(id = "lastname")
-    WebElement LasttName_Address;
-
-    @FindBy(id = "address1")
-    WebElement Address;
-
-    @FindBy(id = "city")
-    WebElement City;
-
-    @FindBy(id = "id_state")
-    WebElement State;
-
-    @FindBy(id = "postcode")
-    WebElement PostCode;
-
-    @FindBy(id = "id_country")
-    WebElement Country;
-
-    @FindBy(id = "phone_mobile")
-    WebElement MobilePhone;
-
-    @FindBy(id = "alias")
-    WebElement Alias;
-
-    @FindBy(id = "submitAccount")
-    WebElement SubmitBtn;
-
-
 
     public void PersonalInfo_IsVisibble() {
-       // wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//h3[contains(text(),'Your personal information')]")));
+        // wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//h3[contains(text(),'Your personal information')]")));
     }
 
     public void GenderID_Select() throws InterruptedException {
         //wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("id_gender2")));
         Thread.sleep(15000);
-        GenderID= driver.findElement(By.xpath("//input[@id='id_gender1']"));
-        GenderID.click();
+        driver.findElement(GenderID).click();
     }
 
     public void FirstName_Set(String firstname) {
-        FirstName.sendKeys(firstname);
+        driver.findElement(FirstName).sendKeys(firstname);
     }
 
     public void LastName_Set(String lastname) {
-        LastName.sendKeys(lastname);
+        driver.findElement(LastName).sendKeys(lastname);
     }
 
     public void Password_Set(String password) {
-        Password.sendKeys(password);
+        driver.findElement(Password).sendKeys(password);
     }
 
     public void Days_Set() {
-        Select DaysSelect=new Select(Days);
-DaysSelect.selectByIndex(1);
+
+        Select DaysSelect = new Select(driver.findElement(Days));
+        DaysSelect.selectByIndex(1);
     }
 
     public void Months_Set() {
-        Select MonthsSelect=new Select(Months);
+        Select MonthsSelect = new Select(driver.findElement(Months));
         MonthsSelect.selectByIndex(5);
     }
 
     public void Years_Set() {
-        Select YearsSelect=new Select(Years);
+        Select YearsSelect = new Select(driver.findElement(Years));
         YearsSelect.selectByIndex(1);
     }
 
     public void FirstNameAddress_Set(String firstname) {
-        FirstName_Address.sendKeys(firstname);
+
+        driver.findElement(FirstName_Address).sendKeys(firstname);
+
     }
 
     public void LastNameAddress_Set(String lastname) {
-        LasttName_Address.sendKeys(lastname);
+        driver.findElement(LasttName_Address).sendKeys(lastname);
+
     }
 
     public void Address_Set(String address) {
-        Address.sendKeys(address);
+        driver.findElement(Address).sendKeys(address);
+
     }
 
     public void City_Set(String city) {
-        City.sendKeys(city);
+        driver.findElement(City).sendKeys(city);
+
     }
 
     public void State_Set() {
-        Select StateSelect=new Select(State);
+        Select StateSelect = new Select(driver.findElement(State));
         StateSelect.selectByIndex(1);
     }
 
     public void PostCode_Set(String PCode) {
-        PostCode.sendKeys(PCode);
+        driver.findElement(PostCode).sendKeys(PCode);
+
     }
 
     public void Country_Set() {
-        Select CountrySelect=new Select(Country);
+        Select CountrySelect = new Select(driver.findElement(Country));
         CountrySelect.selectByIndex(1);
     }
 
     public void MobilePhone_Set(String mobilePhone) {
-        MobilePhone.sendKeys(mobilePhone);
+
+        driver.findElement(MobilePhone).sendKeys(mobilePhone);
+
     }
 
     public void Registerbtn_Click() {
-        SubmitBtn .click();
+        driver.findElement(SubmitBtn).click();
+
     }
 }

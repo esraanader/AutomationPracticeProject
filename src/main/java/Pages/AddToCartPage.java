@@ -19,6 +19,7 @@ import java.util.concurrent.TimeUnit;
 
 public class AddToCartPage {
     Actions actions;
+
     public AddToCartPage(WebDriver driver) {
         PageFactory.initElements(driver, this);
         actions = new Actions(driver);

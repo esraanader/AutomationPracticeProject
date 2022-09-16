@@ -14,19 +14,16 @@ import java.time.Duration;
 import java.util.concurrent.TimeUnit;
 
 public class CheckOutPage {
-
     protected WebDriver driver;
+    By CheckOutbtn=By.xpath("(//span[contains(text(), \"Proceed to checkout\")])[2]");
+
     public CheckOutPage(WebDriver driver) {
         PageFactory.initElements(driver, this);
+        this.driver = driver;
     }
-    @FindBy(xpath = "(//span[contains(text(), \"Proceed to checkout\")])[2]")
-    WebElement CheckOutbtn;
 
     public void CheckOut() throws InterruptedException {
         Thread.sleep(20000);
-        CheckOutbtn.click();
+       driver.findElement(CheckOutbtn).click();
     }
-
-
-
 }
