@@ -1,24 +1,8 @@
 package Pages;
 
-import Drivers.ChromeDriverInit;
 import org.openqa.selenium.*;
-import org.openqa.selenium.chrome.ChromeDriver;
-import org.openqa.selenium.firefox.FirefoxDriver;
-import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
-import org.testng.annotations.*;
-import org.junit.Assert;
-import org.openqa.selenium.support.ui.ExpectedConditions;
-import org.openqa.selenium.support.ui.WebDriverWait;
-
-import java.util.concurrent.TimeUnit;
-
-import org.openqa.selenium.support.ui.ExpectedConditions;
-import org.openqa.selenium.support.ui.WebDriverWait;
-import org.testng.annotations.*;
 import org.testng.asserts.SoftAssert;
-
-import static org.testng.Assert.assertTrue;
 
 public class HomePage {
     protected WebDriver driver;
@@ -28,15 +12,13 @@ public class HomePage {
     public HomePage(WebDriver driver) {
         PageFactory.initElements(driver, this);
         this.driver = driver;
-
     }
 
     public Boolean HomePage_IsDisplayed() {
         verifyTitle = driver.getTitle().equalsIgnoreCase("My Store");
         SoftAssert softassert = new SoftAssert();
         softassert.assertFalse(verifyTitle);
-        System.out.println(verifyTitle);
-
+        System.out.println("Is Page displayed : " + verifyTitle);
         return verifyTitle;
     }
 

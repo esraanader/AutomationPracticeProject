@@ -2,16 +2,10 @@ package Pages;
 
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.WebElement;
-import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
-import org.openqa.selenium.JavascriptExecutor;
 import org.testng.asserts.SoftAssert;
 
-import static org.testng.Assert.assertTrue;
-
 public class SignInPage {
-
     protected WebDriver driver;
     By SignUpEmail = By.id("email_create");
     By CreateAccountbtn = By.id("SubmitCreate");
@@ -26,7 +20,7 @@ public class SignInPage {
         verifyTitle = driver.getTitle().equalsIgnoreCase("Login - My Store");
         SoftAssert softassert = new SoftAssert();
         softassert.assertFalse(verifyTitle);
-        System.out.println(verifyTitle);
+        System.out.println("Is Page displayed : " + verifyTitle);
         return verifyTitle;
     }
 
@@ -35,7 +29,6 @@ public class SignInPage {
     }
 
     public void CreateAccountbtn_Click() {
-
         driver.findElement(CreateAccountbtn).click();
     }
 }

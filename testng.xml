@@ -3,7 +3,7 @@
 <suite name="All Test Suite">
     <test verbose="2" preserve-order="true" name="C:/Users/Esraa Nader/IdeaProjects/AutomationPractice">
         <classes>
-            <class name="AutomationPracticeTCs.E2EScenario">
+            <class name="AutomationPracticeTCs.EndToEndScenario">
                 <methods>
                     <include name="SignIn"/>
                     <include name="CreateAccount"/>
@@ -11,12 +11,13 @@
                     <include name="SelectWomenMenu"/>
                     <include name="AddToCartPage"/>
                     <include name="CheckOut"/>
-                    <include name="DeliveryAdress"/>
+                    <include name="DeliveryAddress"/>
                     <include name="Shipment"/>
                     <include name="BankPay"/>
                     <include name="OrderSummary"/>
                     <include name="ConfirmPayment"/>
                     <include name="OrderHistory"/>
+                    <include name="closeBrowser"/>
                 </methods>
             </class>
         </classes>

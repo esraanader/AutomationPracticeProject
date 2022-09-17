@@ -3,8 +3,6 @@ package Pages;
 import org.apache.commons.lang3.StringUtils;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.WebElement;
-import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
@@ -12,13 +10,12 @@ import org.testng.asserts.SoftAssert;
 
 import java.time.Duration;
 
-import static org.testng.Assert.assertTrue;
-
 public class OrderConfirmationPage {
     protected WebDriver driver;
     WebDriverWait wait;
     By ReferenceNo = By.xpath("//div[@class='box']");
     By BacktoOrdersbtn = By.xpath("//a[contains(text(), \"Back to orders\")]");
+    Boolean verifyTitle;
 
     public OrderConfirmationPage(WebDriver driver) {
         PageFactory.initElements(driver, this);
@@ -26,21 +23,16 @@ public class OrderConfirmationPage {
         wait = new WebDriverWait(driver, Duration.ofSeconds(60));
     }
 
-    Boolean verifyTitle;
-
     public Boolean OrderConfirmation_IsDisplayed() {
         verifyTitle = driver.getTitle().equalsIgnoreCase("Order confirmation - My Store");
         SoftAssert softassert = new SoftAssert();
         softassert.assertFalse(verifyTitle);
-        System.out.println(verifyTitle);
+        System.out.println("Is Page displayed : " + verifyTitle);
         return verifyTitle;
     }
 
-
     public String ReferenceNumber_Get() throws InterruptedException {
         wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//a[contains(text(), \"Back to orders\")]")));
-
-
         String ReferenceData = driver.findElement(ReferenceNo).getText();
         String ReferenceDataSub = StringUtils.substringAfter(ReferenceData, "order reference");
         String[] ReferenceDataList = ReferenceDataSub.split(" ", 3);

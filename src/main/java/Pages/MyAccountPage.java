@@ -2,9 +2,7 @@ package Pages;
 
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.WebElement;
 import org.openqa.selenium.interactions.Actions;
-import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
@@ -12,42 +10,34 @@ import org.testng.asserts.SoftAssert;
 
 import java.time.Duration;
 
-import static org.testng.Assert.assertTrue;
-
 public class MyAccountPage {
     protected WebDriver driver;
     WebDriverWait wait;
-    Actions actions ;
+    Actions actions;
+    Boolean verifyTitle;
+    By CategoriesMenu=By.xpath("(//a[contains(text(), \"Women\")])[1]");
+    By subMenu=By.xpath("(//a[contains(text(), \"Blouses\")])[1]");
 
     public MyAccountPage(WebDriver driver) {
         PageFactory.initElements(driver, this);
         actions = new Actions(driver);
-        this.driver=driver;
-        wait=new WebDriverWait(driver, Duration.ofSeconds(60));
+        this.driver = driver;
+        wait = new WebDriverWait(driver, Duration.ofSeconds(60));
     }
 
-    @FindBy(xpath = "(//a[contains(text(), \"Women\")])[1]")
-    WebElement CategoriesMenu;
-
-    @FindBy(xpath = "(//a[contains(text(), \"Blouses\")])[1]")
-    WebElement subMenu;
-
-    Boolean verifyTitle ;
 
     public Boolean AccountPage_IsDisplayed() {
         verifyTitle = driver.getTitle().equalsIgnoreCase("My account - My Store");
-        SoftAssert softassert=new SoftAssert();
+        SoftAssert softassert = new SoftAssert();
         softassert.assertFalse(verifyTitle);
-        System.out.println(verifyTitle);
+        System.out.println("Is Page displayed : " + verifyTitle);
         return verifyTitle;
     }
+
     public void Menu_Hover() throws InterruptedException {
-
-
         wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("(//a[contains(text(), \"Women\")])[1]")));
-
-        actions.moveToElement(CategoriesMenu).build().perform();
-        actions.moveToElement(subMenu).build().perform();
-        subMenu.click();
+        actions.moveToElement(driver.findElement(CategoriesMenu)).build().perform();
+        actions.moveToElement(driver.findElement(subMenu)).build().perform();
+        driver.findElement(subMenu).click();
     }
 }
