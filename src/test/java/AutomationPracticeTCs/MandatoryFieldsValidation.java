@@ -79,5 +79,9 @@ public class MandatoryFieldsValidation {
         softassert.assertTrue(createAccountpage.ErrorMessage_IsDisplayed());
     }
 
-
+    @AfterTest
+    //Close the driver
+    public void closeBrowser() {
+        driver.quit();
+    }
 }

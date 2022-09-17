@@ -1,7 +1,6 @@
 package AutomationPracticeTCs;
 
 import Data.JsonReader;
-import Pages.CreateAccountPage;
 import Pages.HomePage;
 import Pages.LimitReachedPage;
 import Pages.SignInPage;
@@ -9,19 +8,16 @@ import io.github.bonigarcia.wdm.WebDriverManager;
 import org.json.simple.parser.ParseException;
 import org.openqa.selenium.Dimension;
 import org.openqa.selenium.chrome.ChromeDriver;
-import org.testng.annotations.BeforeTest;
-import org.testng.annotations.Test;
+import org.testng.annotations.*;
 import org.testng.asserts.SoftAssert;
 
 import java.io.IOException;
-import java.sql.Timestamp;
 import java.util.List;
 
 public class SignInValidation {
 
     public ChromeDriver driver;
     public String SignUpEmail;
-    public String Password;
     public String chromePath;
     List<String> AccountData;
 
@@ -60,18 +56,20 @@ public class SignInValidation {
         JsonReader jsonReader = new JsonReader();
         AccountData = jsonReader.NewAccountData();
         LimitReachedPage limitReachedPage = new LimitReachedPage(driver);
-        Timestamp timestamp = new Timestamp(System.currentTimeMillis());
         SignInPage signinPage = new SignInPage(driver);
         while (!signinPage.SignIn_IsDisplayed() || limitReachedPage.LimitReachedPage_IsDisplayed()) {
             driver.navigate().refresh();
         }
-        SignUpEmail="esraanader@gmail.com";
+        SignUpEmail = "esraanader@gmail.com";
         signinPage.Set_SignUpEmail("esraanader@gmail.com");
         signinPage.CreateAccountbtn_Click();
         SoftAssert softassert = new SoftAssert();
         softassert.assertTrue(signinPage.ErrorMessage_IsDisplayed());
     }
 
-
-
+    @AfterTest
+    //Close the driver
+    public void closeBrowser() {
+        driver.quit();
+    }
 }

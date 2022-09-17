@@ -13,7 +13,15 @@ public class JsonReader {
     public List <String> NewAccountData() throws IOException, ParseException {
         List<String> list=new ArrayList<String>();
         JSONParser jsonParser = new JSONParser();
-        FileReader reader = new FileReader(System.getProperty("user.dir") + "\\src\\main\\resources\\TestData.json");
+        String OS = System.getProperty("os.name").toLowerCase();
+        FileReader reader;
+        if (OS.contains("win")) {
+            reader = new FileReader(System.getProperty("user.dir") + "\\src\\main\\resources\\TestData.json");
+        } else {
+            reader = new FileReader(System.getProperty("user.dir") + "/src/main/resources/TestData.json");
+        }
+
+        //FileReader reader = new FileReader(System.getProperty("user.dir") + "\\src\\main\\resources\\TestData.json");
         Object obj = jsonParser.parse(reader);
         JSONArray employeeList = (JSONArray) obj;
         JSONObject employeeObject = (JSONObject) employeeList.get(0);
