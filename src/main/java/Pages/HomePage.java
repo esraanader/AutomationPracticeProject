@@ -16,13 +16,14 @@ import java.util.concurrent.TimeUnit;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 import org.testng.annotations.*;
+import org.testng.asserts.SoftAssert;
 
 import static org.testng.Assert.assertTrue;
 
 public class HomePage {
     protected WebDriver driver;
-    By SignInbtn=By.xpath("//a[contains(text(), \"Sign in\")]");
-    Boolean verifyTitle ;
+    By SignInbtn = By.xpath("//a[contains(text(), \"Sign in\")]");
+    Boolean verifyTitle;
 
     public HomePage(WebDriver driver) {
         PageFactory.initElements(driver, this);
@@ -32,11 +33,14 @@ public class HomePage {
 
     public Boolean HomePage_IsDisplayed() {
         verifyTitle = driver.getTitle().equalsIgnoreCase("My Store");
-         assertTrue(verifyTitle);
+        SoftAssert softassert = new SoftAssert();
+        softassert.assertFalse(verifyTitle);
         System.out.println(verifyTitle);
-    return verifyTitle;
+
+        return verifyTitle;
     }
+
     public void SignInbtn_Click() {
-       driver.findElement(SignInbtn).click();
+        driver.findElement(SignInbtn).click();
     }
 }

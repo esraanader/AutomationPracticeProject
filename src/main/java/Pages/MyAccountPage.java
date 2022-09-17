@@ -8,6 +8,7 @@ import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
+import org.testng.asserts.SoftAssert;
 
 import java.time.Duration;
 
@@ -35,7 +36,8 @@ public class MyAccountPage {
 
     public Boolean AccountPage_IsDisplayed() {
         verifyTitle = driver.getTitle().equalsIgnoreCase("My account - My Store");
-        assertTrue(verifyTitle);
+        SoftAssert softassert=new SoftAssert();
+        softassert.assertFalse(verifyTitle);
         System.out.println(verifyTitle);
         return verifyTitle;
     }

@@ -8,6 +8,7 @@ import org.openqa.selenium.support.PageFactory;
 import org.openqa.selenium.support.ui.Select;
 import org.openqa.selenium.support.ui.WebDriverWait;
 import org.openqa.selenium.support.ui.ExpectedConditions;
+import org.testng.asserts.SoftAssert;
 
 import java.time.Duration;
 import java.util.concurrent.TimeUnit;
@@ -37,21 +38,23 @@ public class CreateAccountPage {
     By Country = By.id("id_country");
     By MobilePhone = By.id("phone_mobile");
     By SubmitBtn = By.id("submitAccount");
-    Boolean verifyTitle ;
+    Boolean verifyTitle;
     WebDriverWait wait;
 
     public CreateAccountPage(WebDriver driver) {
         PageFactory.initElements(driver, this);
         this.driver = driver;
-        wait=new WebDriverWait(driver,Duration.ofSeconds(60));
+        wait = new WebDriverWait(driver, Duration.ofSeconds(60));
     }
 
     public Boolean SignIn_IsDisplayed() {
         verifyTitle = driver.getTitle().equalsIgnoreCase("Login - My Store");
-        assertTrue(verifyTitle);
+        SoftAssert softassert = new SoftAssert();
+        softassert.assertFalse(verifyTitle);
         System.out.println(verifyTitle);
         return verifyTitle;
     }
+
     public void GenderID_Select() throws InterruptedException {
 
         wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//input[@id='id_gender2']")));

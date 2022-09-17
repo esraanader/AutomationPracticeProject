@@ -7,6 +7,7 @@ import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
+import org.testng.asserts.SoftAssert;
 
 import java.time.Duration;
 
@@ -15,21 +16,25 @@ import static org.testng.Assert.assertTrue;
 public class OrderSummaryPage {
     protected WebDriver driver;
     WebDriverWait wait;
-    By Confirmbtn= By.xpath("//span[contains(text(), \"I confirm my order\")]");
+    By Confirmbtn = By.xpath("//span[contains(text(), \"I confirm my order\")]");
 
     public OrderSummaryPage(WebDriver driver) {
         PageFactory.initElements(driver, this);
         this.driver = driver;
-        wait=new WebDriverWait(driver, Duration.ofSeconds(60));
+        wait = new WebDriverWait(driver, Duration.ofSeconds(60));
 
     }
-   Boolean verifyTitle;
+
+    Boolean verifyTitle;
+
     public Boolean OrderSummaryPage_IsDisplayed() {
         verifyTitle = driver.getTitle().equalsIgnoreCase("My Store");
-        assertTrue(verifyTitle);
+        SoftAssert softassert = new SoftAssert();
+        softassert.assertFalse(verifyTitle);
         System.out.println(verifyTitle);
         return verifyTitle;
     }
+
     public void Confirm() throws InterruptedException {
         wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//span[contains(text(), \"I confirm my order\")]")));
         driver.findElement(Confirmbtn).click();

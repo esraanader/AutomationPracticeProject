@@ -9,6 +9,7 @@ import org.openqa.selenium.support.PageFactory;
 import org.openqa.selenium.support.ui.Select;
 import org.openqa.selenium.support.ui.WebDriverWait;
 import org.openqa.selenium.support.ui.ExpectedConditions;
+import org.testng.asserts.SoftAssert;
 
 import java.time.Duration;
 import java.util.concurrent.TimeUnit;
@@ -23,11 +24,12 @@ public class AddToCartPage {
     Actions actions;
     WebDriverWait wait;
     protected WebDriver driver;
+
     public AddToCartPage(WebDriver driver) {
         PageFactory.initElements(driver, this);
         actions = new Actions(driver);
         this.driver = driver;
-        wait=new WebDriverWait(driver,Duration.ofSeconds(60));
+        wait = new WebDriverWait(driver, Duration.ofSeconds(60));
     }
 
     @FindBy(xpath = "//span[contains(text(), \"Add to cart\")]")
@@ -36,11 +38,12 @@ public class AddToCartPage {
     @FindBy(xpath = "//span[contains(text(), \"Proceed to checkout\")]")
     WebElement CheckOutbtn;
 
-    Boolean verifyTitle ;
+    Boolean verifyTitle;
 
     public Boolean AddToCartPage_IsDisplayed() {
         verifyTitle = driver.getTitle().equalsIgnoreCase("Blouses - My Store");
-        assertTrue(verifyTitle);
+        SoftAssert softassert = new SoftAssert();
+        softassert.assertFalse(verifyTitle);
         System.out.println(verifyTitle);
         return verifyTitle;
     }

@@ -44,8 +44,8 @@ public class E2EScenario {
     @Test(priority = 1)
     public void SignIn() {
         HomePage homePage = new HomePage(driver);
-
-        while (!homePage.HomePage_IsDisplayed()) {
+    LimitReachedPage limitreachedpaged=new LimitReachedPage(driver);
+        while (!homePage.HomePage_IsDisplayed()|| limitreachedpaged.LimitReachedPage_IsDisplayed()) {
             driver.navigate().refresh();
         }
         homePage.SignInbtn_Click();
@@ -55,9 +55,10 @@ public class E2EScenario {
     public void CreateAccount() throws IOException, ParseException {
         JsonReader jsonReader = new JsonReader();
         AccountData = jsonReader.NewAccountData();
+        LimitReachedPage limitreachedpaged=new LimitReachedPage(driver);
         Timestamp timestamp = new Timestamp(System.currentTimeMillis());
         SignInPage signinPage = new SignInPage(driver);
-        while (!signinPage.SignIn_IsDisplayed()) {
+        while (!signinPage.SignIn_IsDisplayed()|| limitreachedpaged.LimitReachedPage_IsDisplayed()) {
             driver.navigate().refresh();
         }
         signinPage.Set_SignUpEmail(AccountData.get(0) + timestamp.getTime() + "@gmail.com");
@@ -69,7 +70,8 @@ public class E2EScenario {
     public void SetPersonalInfo() throws InterruptedException {
         //driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
         CreateAccountPage createAccountpage = new CreateAccountPage(driver);
-        while (!createAccountpage.SignIn_IsDisplayed()) {
+        LimitReachedPage limitreachedpaged=new LimitReachedPage(driver);
+        while (!createAccountpage.SignIn_IsDisplayed()|| limitreachedpaged.LimitReachedPage_IsDisplayed()) {
             driver.navigate().refresh();
         }
         createAccountpage.GenderID_Select();
@@ -94,7 +96,8 @@ public class E2EScenario {
     @Test(priority = 4)
     public void SelectWomenMenu() throws InterruptedException {
         MyAccountPage myAccountPage = new MyAccountPage(driver);
-        while (!myAccountPage.AccountPage_IsDisplayed()) {
+        LimitReachedPage limitreachedpaged=new LimitReachedPage(driver);
+        while (!myAccountPage.AccountPage_IsDisplayed()|| limitreachedpaged.LimitReachedPage_IsDisplayed()) {
             driver.navigate().refresh();
         }
         myAccountPage.Menu_Hover();
@@ -103,7 +106,8 @@ public class E2EScenario {
     @Test(priority = 5)
     public void AddToCartPage() throws InterruptedException {
         AddToCartPage addToCartPage = new AddToCartPage(driver);
-        while (!addToCartPage.AddToCartPage_IsDisplayed()) {
+        LimitReachedPage limitreachedpaged=new LimitReachedPage(driver);
+        while (!addToCartPage.AddToCartPage_IsDisplayed()|| limitreachedpaged.LimitReachedPage_IsDisplayed()) {
             driver.navigate().refresh();
         }
         addToCartPage.Item_Hover();
@@ -113,7 +117,8 @@ public class E2EScenario {
     @Test(priority = 6)
     public void CheckOut() throws InterruptedException {
         CheckOutPage addToCartPage = new CheckOutPage(driver);
-        while (!addToCartPage.CheckOutPage_IsDisplayed()) {
+        LimitReachedPage limitreachedpaged=new LimitReachedPage(driver);
+        while (!addToCartPage.CheckOutPage_IsDisplayed()|| limitreachedpaged.LimitReachedPage_IsDisplayed()) {
             driver.navigate().refresh();
         }
 
@@ -123,7 +128,8 @@ public class E2EScenario {
     @Test(priority = 7)
     public void DeliveryAdress() throws InterruptedException {
         DeliveryAddressPage deliveryAddressPage = new DeliveryAddressPage(driver);
-        while (!deliveryAddressPage.DeliveryAddressPage_IsDisplayed()) {
+        LimitReachedPage limitreachedpaged=new LimitReachedPage(driver);
+        while (!deliveryAddressPage.DeliveryAddressPage_IsDisplayed()||limitreachedpaged.LimitReachedPage_IsDisplayed()) {
             driver.navigate().refresh();
         }
 
@@ -135,7 +141,8 @@ public class E2EScenario {
     public void Shipment() throws InterruptedException {
         ShipmentPage ShipmentCheck = new ShipmentPage(driver);
         DeliveryAddressPage deliveryAddressPage = new DeliveryAddressPage(driver);
-        while (!deliveryAddressPage.DeliveryAddressPage_IsDisplayed()) {
+        LimitReachedPage limitreachedpaged=new LimitReachedPage(driver);
+        while (!deliveryAddressPage.DeliveryAddressPage_IsDisplayed()|| limitreachedpaged.LimitReachedPage_IsDisplayed()) {
             driver.navigate().refresh();
         }
         ShipmentCheck.CheckOut();
@@ -144,7 +151,8 @@ public class E2EScenario {
     @Test(priority = 9)
     public void BankPay() throws InterruptedException {
         PaymentPage Bankpay = new PaymentPage(driver);
-        while (!Bankpay.PaymentPage_IsDisplayed()) {
+        LimitReachedPage limitreachedpaged=new LimitReachedPage(driver);
+        while (!Bankpay.PaymentPage_IsDisplayed()|| limitreachedpaged.LimitReachedPage_IsDisplayed()) {
             driver.navigate().refresh();
         }
         Bankpay.Pay();
@@ -153,7 +161,8 @@ public class E2EScenario {
     @Test(priority = 10)
     public void OrderSummary() throws InterruptedException {
         OrderSummaryPage orderSummary = new OrderSummaryPage(driver);
-        while (!orderSummary.OrderSummaryPage_IsDisplayed()) {
+        LimitReachedPage limitreachedpaged=new LimitReachedPage(driver);
+        while (!orderSummary.OrderSummaryPage_IsDisplayed()|| limitreachedpaged.LimitReachedPage_IsDisplayed()) {
             driver.navigate().refresh();
         }
         orderSummary.Confirm();
@@ -162,7 +171,8 @@ public class E2EScenario {
     @Test(priority = 11)
     public void ConfirmPayment() throws InterruptedException {
         OrderConfirmationPage confirmPayment = new OrderConfirmationPage(driver);
-        while (!confirmPayment.OrderConfirmation_IsDisplayed()) {
+        LimitReachedPage limitreachedpaged=new LimitReachedPage(driver);
+        while (!confirmPayment.OrderConfirmation_IsDisplayed()|| limitreachedpaged.LimitReachedPage_IsDisplayed()) {
             driver.navigate().refresh();
         }
 
@@ -173,8 +183,9 @@ public class E2EScenario {
     @Test(priority = 12)
     public void OrderHistory() throws InterruptedException {
         OrderHistoryPage orderhistory = new OrderHistoryPage(driver);
+        LimitReachedPage limitreachedpaged=new LimitReachedPage(driver);
         orderhistory.ConfirmRefernceNo(OrderNumber);
-        while (!orderhistory.OrderHistory_IsDisplayed()) {
+        while (!orderhistory.OrderHistory_IsDisplayed()|| limitreachedpaged.LimitReachedPage_IsDisplayed()) {
             driver.navigate().refresh();
         }
     }
