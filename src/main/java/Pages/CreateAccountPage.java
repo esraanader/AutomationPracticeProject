@@ -11,6 +11,7 @@ import java.time.Duration;
 
 public class CreateAccountPage {
     protected WebDriver driver;
+    Boolean VerifyErrorMsg;
     By GenderID = By.xpath("//input[@id='id_gender2']");
     By FirstName = By.id("customer_firstname");
     By LastName = By.id("customer_lastname");
@@ -30,6 +31,7 @@ public class CreateAccountPage {
     By SubmitBtn = By.id("submitAccount");
     Boolean verifyTitle;
     WebDriverWait wait;
+    By ErrorMsg=By.xpath("//body/div[@id='page']/div[2]/div[1]/div[3]/div[1]/div[1]");
 
     public CreateAccountPage(WebDriver driver) {
         PageFactory.initElements(driver, this);
@@ -45,6 +47,14 @@ public class CreateAccountPage {
         return verifyTitle;
     }
 
+    public Boolean ErrorMessage_IsDisplayed() {
+        //verifyTitle = driver.getTitle().equalsIgnoreCase("Login - My Store");
+        VerifyErrorMsg=driver.findElement(ErrorMsg).isDisplayed();
+        SoftAssert softassert = new SoftAssert();
+        softassert.assertFalse(VerifyErrorMsg);
+        System.out.println("Is Error Message displayed : " + VerifyErrorMsg);
+        return VerifyErrorMsg;
+    }
     public void GenderID_Select() throws InterruptedException {
         wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//input[@id='id_gender2']")));
         driver.findElement(GenderID).click();
@@ -112,6 +122,7 @@ public class CreateAccountPage {
     }
 
     public void Registerbtn_Click() {
+
         driver.findElement(SubmitBtn).click();
     }
 }
